@@ -84,7 +84,7 @@ class TagWidget extends WP_Widget {
 		if ( $widget_content != '' ) {
 			echo $before_widget;
 			echo $before_title;
-			echo $title;
+			echo esc_html( $title );
 			echo $after_title;
 
 			echo $widget_content;
@@ -229,7 +229,7 @@ class TagWidget extends WP_Widget {
         <p>
             <label for="<?php echo $this->get_field_id( 'tags' ); ?>">
             <?php _e( 'Tags:' , 'posts-by-tag' ); ?><br />
-                    <input class="widefat" id="<?php echo $this->get_field_id( 'tags' ); ?>" name="<?php echo $this->get_field_name( 'tags' ); ?>" type="text" value="<?php echo $tags; ?>" onfocus ="setSuggest('<?php echo $this->get_field_id( 'tags' ); ?>');" />
+                    <input class="widefat" id="<?php echo $this->get_field_id( 'tags' ); ?>" name="<?php echo $this->get_field_name( 'tags' ); ?>" type="text" value="<?php echo esc_attr( $tags ); ?>" onfocus ="setSuggest('<?php echo $this->get_field_id( 'tags' ); ?>');" />
             </label><br />
             <?php _e( 'Separate multiple tags by comma', 'posts-by-tag' );?>
 		</p>
@@ -354,7 +354,7 @@ class TagWidget extends WP_Widget {
         <p>
             <label for="<?php echo $this->get_field_id( 'link_target' ); ?>">
 				<?php _e( 'Target attribute for links', 'posts-by-tag' ); ?>
-            <input style="width: 75px; text-align: center;" id="<?php echo $this->get_field_id( 'link_target' ); ?>" name="<?php echo $this->get_field_name( 'link_target' ); ?>" type="text" value="<?php echo $link_target; ?>" /></label>
+            <input style="width: 75px; text-align: center;" id="<?php echo $this->get_field_id( 'link_target' ); ?>" name="<?php echo $this->get_field_name( 'link_target' ); ?>" type="text" value="<?php echo esc_attr( $link_target ); ?>" /></label>
         </p>
 
         <p>

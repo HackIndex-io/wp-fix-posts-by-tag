@@ -80,7 +80,7 @@ class Posts_By_Tag_Google_Analytics {
      */
     function filter_onclick( $onclick, $options, $post ) {
         if ( isset( $options['event'] ) && $options['event'] != '' ) {
-            return $onclick . $this->replace_placeholders( $options['event'], $options, $post );
+            return $onclick . $this->replace_placeholders( $options['event'], $options, $post, true );
         } else {
             return $onclick;
         }
@@ -89,7 +89,7 @@ class Posts_By_Tag_Google_Analytics {
     /**
      * Replace templates
      */
-    private function replace_placeholders( $subject, $options, $post ) {
+    private function replace_placeholders( $subject, $options, $post, $js = false ) {
         $tags = array();
         foreach ( $options['tag_ids'] as $tag_id ) {
             $tag = get_term_by( 'id', $tag_id, 'post_tag' );
@@ -97,6 +97,10 @@ class Posts_By_Tag_Google_Analytics {
         }
 
         $replacement = array( implode( ',', $tags ), $post->ID, $post->post_name );
+        // Tag names are set by contributors and end up inside the onclick JavaScript
+        if ( $js ) {
+            $replacement = array_map( 'esc_js', $replacement );
+        }
         return str_replace( Posts_By_Tag::$TEMPLATES, $replacement, $subject );
     }
 }

@@ -214,8 +214,8 @@ class Posts_By_Tag {
 ?>
         <input type="hidden" name="posts_by_tag_noncename" id="posts_by_tag_noncename" value="<?php echo wp_create_nonce( plugin_basename( __FILE__ ) );?>" />
         <p>
-            <label> <?php _e( 'Widget Title', 'posts-by-tag' ); ?> <input type="text" name="widget_title" value ="<?php echo $widget_title; ?>"></label><br>
-            <label> <?php _e( 'Widget Tags', 'posts-by-tag' ); ?> <input type="text" name="widget_tags" id = "widget_tags" value ="<?php echo $widget_tags; ?>" onfocus ="setSuggest('widget_tags');"></label>
+            <label> <?php _e( 'Widget Title', 'posts-by-tag' ); ?> <input type="text" name="widget_title" value ="<?php echo esc_attr( $widget_title ); ?>"></label><br>
+            <label> <?php _e( 'Widget Tags', 'posts-by-tag' ); ?> <input type="text" name="widget_tags" id = "widget_tags" value ="<?php echo esc_attr( $widget_tags ); ?>" onfocus ="setSuggest('widget_tags');"></label>
         </p>
 <?php
 	}
@@ -257,13 +257,13 @@ class Posts_By_Tag {
 		$fields = array();
 
 		if ( isset( $_POST['widget_title'] ) ) {
-			$fields['widget_title'] = $_POST['widget_title'];
+			$fields['widget_title'] = sanitize_text_field( $_POST['widget_title'] );
 		} else {
 			$fields['widget_title'] = '';
 		}
 
 		if ( isset( $_POST['widget_tags'] ) ) {
-			$fields['widget_tags'] = $_POST['widget_tags'];
+			$fields['widget_tags'] = sanitize_text_field( $_POST['widget_tags'] );
 		} else {
 			$fields['widget_tags'] = '';
 		}

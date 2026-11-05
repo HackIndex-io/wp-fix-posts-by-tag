@@ -89,12 +89,12 @@ class Posts_By_Tag_Util {
 					$onclick = apply_filters( Posts_By_Tag::FILTER_ONCLICK, '', $options, $tag_post );
 
 					if ( $onclick != '' ) {
-						$onclick_attr = ' onclick = "' . $onclick . '" ';
+						$onclick_attr = ' onclick = "' . esc_attr( $onclick ) . '" ';
 					} else {
 						$onclick_attr = '';
 					}
 
-					$output .= '<li class="posts-by-tag-item ' . implode( ' ', $tag_post_tags ) . '" id="posts-by-tag-item-' . $tag_post->ID . '">';
+					$output .= '<li class="posts-by-tag-item ' . esc_attr( implode( ' ', $tag_post_tags ) ) . '" id="posts-by-tag-item-' . $tag_post->ID . '">';
 
 					if ( $thumbnail ) {
 						if ( has_post_thumbnail( $tag_post->ID ) ) {
@@ -103,23 +103,23 @@ class Posts_By_Tag_Util {
 							} else {
 								$t_size = $thumbnail_size;
 							}
-							$output .=  '<a class="thumb" href="' . $permalink . '" title="' . get_the_title( $tag_post->ID ) . '" ' . $onclick_attr . ' >' .
+							$output .=  '<a class="thumb" href="' . esc_url( $permalink ) . '" title="' . the_title_attribute( array( 'echo' => false, 'post' => $tag_post ) ) . '" ' . $onclick_attr . ' >' .
 								get_the_post_thumbnail( $tag_post->ID, $t_size ) .
 								'</a>';
 						} else {
 							if ( get_post_meta( $tag_post->ID, 'post_thumbnail', true ) != '' ) {
-								$output .=  '<a class="thumb" href="' . $permalink . '" title="' . get_the_title( $tag_post->ID ) . '" ' . $onclick_attr . '>' .
-									'<img src="' . esc_url( get_post_meta( $tag_post->ID, 'post_thumbnail', true ) ) . '" alt="' . get_the_title( $tag_post->ID ) . '" >' .
+								$output .=  '<a class="thumb" href="' . esc_url( $permalink ) . '" title="' . the_title_attribute( array( 'echo' => false, 'post' => $tag_post ) ) . '" ' . $onclick_attr . '>' .
+									'<img src="' . esc_url( get_post_meta( $tag_post->ID, 'post_thumbnail', true ) ) . '" alt="' . the_title_attribute( array( 'echo' => false, 'post' => $tag_post ) ) . '" >' .
 									'</a>';
 							}
 						}
 					}
 
 					// add permalink
-					$output .= '<a class = "posts-by-tag-item-title" href="' . $permalink . '"';
+					$output .= '<a class = "posts-by-tag-item-title" href="' . esc_url( $permalink ) . '"';
 
 					if ( $link_target != '' ) {
-						$output .= ' target = "' . $link_target . '"';
+						$output .= ' target = "' . esc_attr( $link_target ) . '"';
 					}
 
 					$output .= $onclick_attr;
@@ -141,7 +141,7 @@ class Posts_By_Tag_Util {
 
 					if ( $author ) {
 						$output .= ' <small>' . __( 'Posted by: ', 'posts-by-tag' );
-						$output .=  get_the_author_meta( 'display_name', $tag_post->post_author ) . '</small>';
+						$output .=  esc_html( get_the_author_meta( 'display_name', $tag_post->post_author ) ) . '</small>';
 					}
 
 					if ( $date ) {
@@ -300,7 +300,7 @@ class Posts_By_Tag_Util {
 	 * @return string Tag more links HTML content
 	 */
 	public static function get_tag_more_link( $tag ) {
-		return '<a href = "' . get_tag_link( self::get_tag_ID( $tag ) ) . '">' . $tag . '</a> ';
+		return '<a href = "' . esc_url( get_tag_link( self::get_tag_ID( $tag ) ) ) . '">' . esc_html( $tag ) . '</a> ';
 	}
 
 	/**
