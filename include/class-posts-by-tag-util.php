@@ -6,6 +6,8 @@
  * @author Sudar
  * @package Posts_By_Tag
  * @subpackage Utils
+ *
+ * Modified by HackIndex on 2026-11-05: security fixes. Fork of https://github.com/sudar/posts-by-tag
  */
 class Posts_By_Tag_Util {
 

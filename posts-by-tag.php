@@ -1,18 +1,21 @@
 <?php
 /**
- * Plugin Name: Posts By Tag
+ * Plugin Name: Posts By Tag (HackIndex Patched)
  * Plugin Script: posts-by-tag.php
  * Plugin URI: http://sudarmuthu.com/wordpress/posts-by-tag
- * Description: Provide sidebar widgets that can be used to display posts from a set of tags in the sidebar
+ * Description: Provide sidebar widgets that can be used to display posts from a set of tags in the sidebar (HackIndex Patched)
  * Author: Sudar
  * Donate Link: http://sudarmuthu.com/if-you-wanna-thank-me
  * License: GPL
- * Version: 3.2.1
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.html
+ * Version: 3.2.2
  * Author URI: http://sudarmuthu.com/
  * Text Domain: posts-by-tag
  * Domain Path: languages/
  * === RELEASE NOTES ===
  * Check readme file for full release notes
+ *
+ * Modified by HackIndex on 2026-11-05: security fixes. Fork of https://github.com/sudar/posts-by-tag
  */
 
 /**
@@ -73,7 +76,7 @@ class Posts_By_Tag {
 	public $translations;
 
 	// constants
-	const VERSION               = '3.2.1';
+	const VERSION               = '3.2.2';
 	const CUSTOM_POST_FIELD_OLD = 'posts_by_tag_page_fields'; // till v 2.7.4
 	const CUSTOM_POST_FIELD     = '_posts_by_tag_page_fields';
 

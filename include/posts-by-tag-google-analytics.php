@@ -13,6 +13,7 @@ Text Domain: posts-by-tag
 === RELEASE NOTES ===
 2013-01-27 - v0.1 - Initial Release
 
+Modified by HackIndex on 2026-11-05: security fixes. Fork of https://github.com/sudar/posts-by-tag
 */
 
 /*  Copyright 2010  Sudar Muthu  (email : sudar@sudarmuthu.com)
