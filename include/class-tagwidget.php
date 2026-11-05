@@ -31,7 +31,7 @@ class TagWidget extends WP_Widget {
 	function widget( $args, $instance ) {
 		global $post;
 
-		$post_id           = $post->ID;
+		$post_id           = isset( $post->ID ) ? $post->ID : 0;
 
 		extract( $args );
 		$instance          = $this->handle_old_keys( $instance );
@@ -206,6 +206,7 @@ class TagWidget extends WP_Widget {
 		$disable_cache         = (bool) $instance['disable_cache'];
 
 		// show/hide logic
+		$thumbnail_size_custom_style = '';
 		if ( $thumbnail ) {
 			$thumbnail_size_style = 'block';
 			if ( $thumbnail_size == 'custom' ) {
@@ -218,6 +219,7 @@ class TagWidget extends WP_Widget {
 		}
 
 		$is_analytics = apply_filters( Posts_By_Tag::FILTER_PRO_ANALYTICS, false );
+		$disable = '';
 
 		// TODO: Use JavaScript to disable mutually exclusive fields
 ?>

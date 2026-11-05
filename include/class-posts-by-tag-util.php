@@ -24,7 +24,7 @@ class Posts_By_Tag_Util {
 		global $wp_query;
 		global $post;
 
-		$current_post_id = $wp_query->post->ID;
+		$current_post_id = isset( $wp_query->post->ID ) ? $wp_query->post->ID : 0;
 		$output          = '';
 
 		$options         = wp_parse_args( $options, array(
@@ -34,6 +34,7 @@ class Posts_By_Tag_Util {
 				'tag_from_post_custom_field' => false,
 				'exclude'                    => false,
 				'excerpt'                    => false,
+				'excerpt_filter'             => false,
 				'thumbnail'                  => false,
 				'thumbnail_size'             => 'thumbnail',
 				'thumbnail_size_width'       => 100,

@@ -70,6 +70,8 @@ class Posts_By_Tag {
 		'tag_links',
 	);
 
+	public $translations;
+
 	// constants
 	const VERSION               = '3.2.1';
 	const CUSTOM_POST_FIELD_OLD = 'posts_by_tag_page_fields'; // till v 2.7.4
